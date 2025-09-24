@@ -164,7 +164,7 @@ class SettingsPage extends StatelessWidget {
                                 ),
                                 onPressed: () async {
                                   await _saveFeedback(feedbackController.text, userRating);
-                                  Navigator.pop(context); 
+                                  Navigator.pop(context);
                                 },
                                 child: const Text("Kirim & Kembali", style: TextStyle(fontWeight: FontWeight.bold)),
                               ),
@@ -224,6 +224,54 @@ class SettingsPage extends StatelessWidget {
           ),
         ),
       ),
+
+      // 🔽 KODE LAMA DISIMPAN TAPI DIKOMENTARI UNTUK MENGHINDARI ERROR
+      /*
+      appBar: AppBar(title: const Text("Settings")),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: ListView(
+          children: [
+            ListTile(
+              leading: const Icon(Icons.notifications, color: Colors.teal),
+              title: const Text("Notifications & Reminder"),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const NotificationsPage()),
+                );
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.color_lens, color: Colors.teal),
+              title: const Text("Appearance"),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const AppearancePage()),
+                );
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.info_outline, color: Colors.teal),
+              title: const Text("About"),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const AboutPage()),
+                );
+              },
+            ),
+            const Divider(),
+            ListTile(
+              leading: const Icon(Icons.logout, color: Colors.red),
+              title: const Text("Logout"),
+              onTap: () => _showLogoutDialog(context),
+            ),
+          ],
+        ),
+      ),
+      */
     );
   }
 }
