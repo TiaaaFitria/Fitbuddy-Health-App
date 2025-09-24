@@ -49,7 +49,8 @@ class SettingsPage extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const NotificationsPage()),
+                  MaterialPageRoute(
+                      builder: (context) => const NotificationsPage()),
                 );
               },
             ),
@@ -59,7 +60,8 @@ class SettingsPage extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const AppearancePage()),
+                  MaterialPageRoute(
+                      builder: (context) => const AppearancePage()),
                 );
               },
             ),
