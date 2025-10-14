@@ -1,20 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_buddy/pages/main/home_page.dart';
 import 'package:provider/provider.dart';
-import 'pages/splash_screen.dart';
-import 'pages/auth/login_page.dart';
-import 'pages/auth/register_page.dart';
-// ignore: unused_import
-import 'pages/home_page.dart'; 
-import 'model/app_data.dart';
-import 'model/theme_provider.dart';
-import 'model/user_model.dart'; 
+import 'package:intl/date_symbol_data_local.dart';
 
-void main() {
+// 🧩 Import semua model dan halaman yang kamu punya
+import 'package:flutter_buddy/model/app_data.dart';
+import 'package:flutter_buddy/model/theme_provider.dart';
+import 'package:flutter_buddy/model/app_theme.dart';
+import 'package:flutter_buddy/model/user_model.dart';
+
+import 'package:flutter_buddy/pages/splash_screen.dart';
+import 'package:flutter_buddy/pages/auth/login_page.dart';
+import 'package:flutter_buddy/pages/auth/register_page.dart';
+import 'package:flutter_buddy/pages/main/home_page.dart';
+
+import 'pages/admin/admin_page.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await initializeDateFormatting('id_ID', null);
+
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => AppData()),
+        Provider(create: (_) => AppData()),
         ChangeNotifierProvider(create: (_) => ThemeProvider()),
       ],
       child: const MyApp(),
@@ -33,37 +41,25 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: "FitBuddy Health",
 
+      // 🎨 Gunakan theme mode dari provider
       themeMode: themeProvider.themeMode,
-      theme: ThemeData(
-        brightness: Brightness.light,
-        primarySwatch: Colors.blue,
-        scaffoldBackgroundColor: Colors.white,
-        appBarTheme: const AppBarTheme(
-          backgroundColor: Colors.white,
-          foregroundColor: Colors.black,
-        ),
-      ),
-      darkTheme: ThemeData(
-        brightness: Brightness.dark,
-        primarySwatch: Colors.blue,
-        scaffoldBackgroundColor: Colors.black,
-        appBarTheme: const AppBarTheme(
-          backgroundColor: Colors.black,
-          foregroundColor: Colors.white,
-        ),
-      ),
+      theme: AppTheme.lightTheme,
+      darkTheme: AppTheme.darkTheme,
 
-      // 🔹 route awal
+      // 🧭 Route awal
       initialRoute: '/splash',
 
-      // 🔹 daftar route statis
+      // 📌 Daftar route statis
       routes: {
         '/splash': (context) => const SplashScreen(),
         '/login': (context) => const LoginPage(),
         '/register': (context) => const RegisterPage(),
+        '/admin': (context) => const AdminPage(
+              loggedUsers: [],
+            ), // ✅ Tambah route admin
       },
 
-      // 🔹 handle route dinamis (misalnya butuh arguments)
+      // 🧭 Route dinamis (pakai args)
       onGenerateRoute: (settings) {
         if (settings.name == '/home') {
           final args = settings.arguments as UserModel;
@@ -71,7 +67,7 @@ class MyApp extends StatelessWidget {
             builder: (context) => HomePage(user: args),
           );
         }
-        return null; // biar kalau route ga ketemu → error jelas
+        return null;
       },
     );
   }

@@ -1,29 +1,35 @@
 import 'package:flutter/material.dart';
 
 class MenuItem {
-
-  String _title;
-  IconData _icon;
-  Color _color;
-  Widget _page;
+  final String title;
+  final IconData icon;
+  final Color color;
+  final Widget Function() pageBuilder; // fungsi yang menghasilkan widget
 
   MenuItem({
-    required String title,
-    required IconData icon,
-    required Color color,
-    required Widget page,
-  })  : _title = title,
-        _icon = icon,
-        _color = color,
-        _page = page;
+    required this.title,
+    required this.icon,
+    required this.color,
+    required this.pageBuilder,
+  });
 
-  String get title => _title;
-  IconData get icon => _icon;
-  Color get color => _color;
-  Widget get page => _page;
+  // Fungsi bantu untuk membuka halaman
+  Widget openPage() {
+    return pageBuilder();
+  }
 
-  set title(String value) => _title = value;
-  set icon(IconData value) => _icon = value;
-  set color(Color value) => _color = value;
-  set page(Widget value) => _page = value;
+  // copyWith untuk membuat salinan dengan beberapa properti diubah
+  MenuItem copyWith({
+    String? title,
+    IconData? icon,
+    Color? color,
+    Widget Function()? pageBuilder,
+  }) {
+    return MenuItem(
+      title: title ?? this.title,
+      icon: icon ?? this.icon,
+      color: color ?? this.color,
+      pageBuilder: pageBuilder ?? this.pageBuilder,
+    );
+  }
 }
