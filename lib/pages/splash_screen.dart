@@ -33,7 +33,6 @@ class _SplashScreenState extends State<SplashScreen>
   void initState() {
     super.initState();
 
-    // 🎞️ Logo animation
     _logoController = AnimationController(
       vsync: this,
       duration: const Duration(seconds: 2),
@@ -49,13 +48,11 @@ class _SplashScreenState extends State<SplashScreen>
 
     _logoController.forward();
 
-    // 🌊 Wave loader animation
     _waveController = AnimationController(
       vsync: this,
       duration: const Duration(seconds: 2),
     )..repeat(reverse: true);
 
-    // 🌈 Gradient loop animation
     _bgTimer = Timer.periodic(const Duration(seconds: 3), (_) {
       if (mounted) {
         setState(() {
@@ -64,11 +61,9 @@ class _SplashScreenState extends State<SplashScreen>
       }
     });
 
-    // 🕓 Navigasi otomatis setelah 4 detik
     Timer(const Duration(seconds: 4), _navigateNext);
   }
 
-  /// Navigasi otomatis ke halaman berikut
   Future<void> _navigateNext() async {
     try {
       final savedUser = await UserPreferences.getUser();
@@ -76,20 +71,17 @@ class _SplashScreenState extends State<SplashScreen>
       if (!mounted) return;
 
       if (savedUser != null) {
-        // ✅ Pindah ke Home tanpa ubah URL
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (_) => HomePage(user: savedUser)),
         );
       } else {
-        // ✅ Jika belum login, ke LoginPage
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (_) => const LoginPage()),
         );
       }
     } catch (e) {
-      // ✅ Fallback ke LoginPage jika error
       if (mounted) {
         Navigator.pushReplacement(
           context,
@@ -107,7 +99,6 @@ class _SplashScreenState extends State<SplashScreen>
     super.dispose();
   }
 
-  // 🌊 Wave Loader
   Widget _buildWaveLoader() {
     return AnimatedBuilder(
       animation: _waveController,
@@ -155,7 +146,6 @@ class _SplashScreenState extends State<SplashScreen>
         child: SafeArea(
           child: Stack(
             children: [
-              // --- Center logo + app title + loader ---
               Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -208,7 +198,7 @@ class _SplashScreenState extends State<SplashScreen>
                 ),
               ),
 
-              // --- Footer ---
+
               Positioned(
                 bottom: 20,
                 left: 0,

@@ -13,10 +13,6 @@ class UserPreferences {
   static const String _keyFeedbacks = "user_feedbacks";
   static const String _keyLoggedUsers = "logged_users";
 
-  // ======================================================
-  // 🔹 BAGIAN UTAMA: Data User
-  // ======================================================
-
   static Future<void> saveUser(UserModel user) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString(_keyId, user.id);
@@ -30,7 +26,6 @@ class UserPreferences {
       await prefs.setString(_keyPhotoPath, user.photoPath!);
     }
 
-    // 🆕 Tambahkan user ke daftar logged_users
     List<String> users = prefs.getStringList(_keyLoggedUsers) ?? [];
     if (!users.contains(user.email)) {
       users.add(user.email);
@@ -83,10 +78,6 @@ class UserPreferences {
     await prefs.setString(_keyRole, role);
   }
 
-  // ======================================================
-  // 🔹 BAGIAN MENU & FEEDBACK
-  // ======================================================
-
   static Future<void> saveMenus(List<String> menus) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setStringList(_keyMenus, menus);
@@ -107,23 +98,16 @@ class UserPreferences {
     return prefs.getStringList(_keyFeedbacks) ?? [];
   }
 
-  // ======================================================
-  // 🔹 BAGIAN USER LOGIN MANAGEMENT
-  // ======================================================
-
-  /// Simpan daftar user yang sedang login
   static Future<void> saveLoggedUsers(List<String> users) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setStringList(_keyLoggedUsers, users);
   }
 
-  /// Ambil daftar user yang sedang login
   static Future<List<String>> getLoggedUsers() async {
     final prefs = await SharedPreferences.getInstance();
     return prefs.getStringList(_keyLoggedUsers) ?? [];
   }
 
-  /// Tambahkan 1 user ke daftar login
   static Future<void> addLoggedUser(String email) async {
     final prefs = await SharedPreferences.getInstance();
     List<String> users = prefs.getStringList(_keyLoggedUsers) ?? [];
@@ -133,7 +117,6 @@ class UserPreferences {
     }
   }
 
-  /// Logout 1 user berdasarkan index atau email
   static Future<void> removeLoggedUser(String email) async {
     final prefs = await SharedPreferences.getInstance();
     List<String> users = prefs.getStringList(_keyLoggedUsers) ?? [];
@@ -141,17 +124,11 @@ class UserPreferences {
     await prefs.setStringList(_keyLoggedUsers, users);
   }
 
-  /// Logout semua user sekaligus
   static Future<void> clearAllLoggedUsers() async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.remove(_keyLoggedUsers);
   }
 
-  // ======================================================
-  // 🔹 Fungsi Tambahan Kosong (Placeholder)
-  // ======================================================
-
-  static Future<void> saveQuote(String editableQuote) async {
-    // Placeholder: bisa diisi nanti kalau dibutuhkan
+  static Future<void> saveQuote(String editableQuote) async { 
   }
 }

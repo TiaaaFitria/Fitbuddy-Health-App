@@ -4,7 +4,7 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class JourneyPage extends StatefulWidget {
-  final String userId; // Tambahkan userId
+  final String userId; 
 
   const JourneyPage({super.key, required this.userId});
 

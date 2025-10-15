@@ -15,7 +15,6 @@ class GradientBackground extends StatelessWidget {
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
-    // Gunakan gradient yang konsisten, tapi sedikit gelap di dark mode
     final List<Color> gradientColors = isDark
         ? [
             // ignore: deprecated_member_use
@@ -27,17 +26,27 @@ class GradientBackground extends StatelessWidget {
             AppTheme.primaryBlue,
           ];
 
-    final gradientContainer = Container(
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: gradientColors,
+    final gradientLayer = IgnorePointer(
+      child: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: gradientColors,
+          ),
         ),
       ),
-      child: child,
     );
 
-    return applySafeArea ? SafeArea(child: gradientContainer) : gradientContainer;
+    final backgroundWithChild = Stack(
+      children: [
+        gradientLayer,
+        child,
+      ],
+    );
+
+    return applySafeArea
+        ? SafeArea(child: backgroundWithChild)
+        : backgroundWithChild;
   }
 }

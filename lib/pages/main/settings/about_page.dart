@@ -1,29 +1,22 @@
 // ignore_for_file: deprecated_member_use
-
 import 'package:flutter/material.dart';
 import 'package:flutter_buddy/model/app_theme.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class AboutPage extends StatelessWidget {
   const AboutPage({super.key});
-
-  /// Launch URL: try external app first, fallback to in-app web view / browser.
   Future<void> _launchURL(String url) async {
     final uri = Uri.parse(url);
 
-    // Try external application (native app)
     try {
-      bool launched = await launchUrl(uri, mode: LaunchMode.externalApplication);
+      bool launched =
+          await launchUrl(uri, mode: LaunchMode.externalApplication);
       if (launched) return;
     } catch (_) {
-      // ignore and fallback
     }
 
-    // Fallback: open in an in-app webview (or default browser if not available)
     if (!await launchUrl(uri, mode: LaunchMode.inAppWebView)) {
-      // last resort: try default browser
       if (!await launchUrl(uri, mode: LaunchMode.platformDefault)) {
-        // Jika semua gagal, tunjukkan pesan error
         throw 'Could not launch $url';
       }
     }
@@ -41,7 +34,6 @@ class AboutPage extends StatelessWidget {
       splashColor: Colors.white24,
       child: Column(
         children: [
-          // Lingkaran latar yang subtle supaya logo tetap jelas
           Container(
             padding: const EdgeInsets.all(14),
             decoration: BoxDecoration(
@@ -97,7 +89,6 @@ class AboutPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                // Logo & Title
                 Column(
                   children: [
                     Container(
@@ -150,7 +141,6 @@ class AboutPage extends StatelessWidget {
 
                 const SizedBox(height: 30),
 
-                // Tentang Saya
                 Container(
                   width: double.infinity,
                   decoration: BoxDecoration(
@@ -198,7 +188,6 @@ class AboutPage extends StatelessWidget {
 
                 const SizedBox(height: 26),
 
-                // Tentang Aplikasi
                 Container(
                   width: double.infinity,
                   decoration: BoxDecoration(
@@ -245,14 +234,14 @@ class AboutPage extends StatelessWidget {
 
                 const SizedBox(height: 30),
 
-                // Social icons (centered)
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     _buildSocialIcon(
                       assetPath: "assets/icons/instagram.png",
                       label: "Instagram",
-                      url: "https://www.instagram.com/tia_ftrn?igsh=eWxrbTQ5eXpseDRs&utm_source=qr",
+                      url:
+                          "https://www.instagram.com/tia_ftrn?igsh=eWxrbTQ5eXpseDRs&utm_source=qr",
                       context: context,
                     ),
                     _buildSocialIcon(
@@ -260,7 +249,7 @@ class AboutPage extends StatelessWidget {
                       label: "GitHub",
                       url: "https://github.com/TiaaaFitria?tab=repositories",
                       context: context,
-                    ),           
+                    ),
                   ],
                 ),
 

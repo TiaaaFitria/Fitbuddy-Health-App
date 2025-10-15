@@ -1,6 +1,6 @@
 // ignore_for_file: deprecated_member_use
-
 import 'package:flutter/material.dart';
+import 'package:flutter_buddy/pages/auth/login_page.dart';
 import 'package:flutter_buddy/widgets/gradient_background.dart';
 import '../../model/user_model.dart';
 import '../../model/app_state.dart';
@@ -22,15 +22,6 @@ class _RegisterPageState extends State<RegisterPage> {
   bool _obscureConfirmPassword = true;
   bool _isRegistering = false;
 
-  @override
-  void dispose() {
-    _nameController.dispose();
-    _emailController.dispose();
-    _passwordController.dispose();
-    _confirmPasswordController.dispose();
-    super.dispose();
-  }
-
   void _register() {
     if (_isRegistering) return;
     if (_formKey.currentState!.validate()) {
@@ -49,10 +40,23 @@ class _RegisterPageState extends State<RegisterPage> {
 
       Future.delayed(const Duration(seconds: 1), () {
         if (!mounted) return;
-        Navigator.pushReplacementNamed(context, '/login');
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (_) => const LoginPage()),
+        );
       });
     }
   }
+
+  @override
+  void dispose() {
+    _nameController.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+    _confirmPasswordController.dispose();
+    super.dispose();
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +71,6 @@ class _RegisterPageState extends State<RegisterPage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  // --- Logo ---
                   Container(
                     decoration: BoxDecoration(
                       boxShadow: [
@@ -100,7 +103,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                   ),
                   const SizedBox(height: 32),
-                  // --- Name ---
+                  
                   TextFormField(
                     controller: _nameController,
                     style: const TextStyle(color: Color(0xFF4A90E2)),
@@ -122,7 +125,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     validator: (v) => v == null || v.isEmpty ? "Nama tidak boleh kosong" : null,
                   ),
                   const SizedBox(height: 16),
-                  // --- Email ---
+            
                   TextFormField(
                     controller: _emailController,
                     style: const TextStyle(color: Color(0xFF4A90E2)),
@@ -150,7 +153,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     },
                   ),
                   const SizedBox(height: 16),
-                  // --- Password ---
+                  
                   TextFormField(
                     controller: _passwordController,
                     obscureText: _obscurePassword,
@@ -182,7 +185,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     },
                   ),
                   const SizedBox(height: 16),
-                  // --- Confirm Password ---
+                  
                   TextFormField(
                     controller: _confirmPasswordController,
                     obscureText: _obscureConfirmPassword,
@@ -216,7 +219,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     },
                   ),
                   const SizedBox(height: 24),
-                  // --- Register Button ---
+                  
                   ElevatedButton(
                     onPressed: _register,
                     style: ElevatedButton.styleFrom(
@@ -250,7 +253,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                   ),
                   const SizedBox(height: 16),
-                  // --- Login TextButton ---
+                  
                   TextButton(
                     onPressed: () => Navigator.pop(context),
                     child: const Text(

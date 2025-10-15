@@ -171,7 +171,6 @@ class _HomePageState extends State<HomePage> {
           ),
           backgroundColor: Colors.transparent,
           elevation: 0,
-          // **Foto profil di AppBar dihapus, kosongkan actions**
           actions: [],
         ),
         body: pages[_selectedIndex],
@@ -219,10 +218,10 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
               SizedBox(
-                height: 70,  // ukuran diperbesar dari 40 ke 60
+                height: 70,  
                 width: 70,
                 child: Image.asset(
-                  'assets/logo.png', // logo di kanan atas body, lebih besar
+                  'assets/logo.png', 
                   fit: BoxFit.contain,
                 ),
               ),

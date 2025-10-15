@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class DailyQuotesPage extends StatefulWidget {
-  final String userId; // untuk per akun
+  final String userId;
   const DailyQuotesPage({super.key, required this.userId});
 
   @override
@@ -58,7 +58,6 @@ class _DailyQuotesPageState extends State<DailyQuotesPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // AppBar gradien presisi
       appBar: AppBar(
         title: const Text("Daily Quotes"),
         centerTitle: true,
@@ -90,7 +89,6 @@ class _DailyQuotesPageState extends State<DailyQuotesPage> {
                   size: 60, color: Colors.purpleAccent.shade100),
               const SizedBox(height: 20),
 
-              // Card kutipan
               Container(
                 padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
@@ -118,7 +116,6 @@ class _DailyQuotesPageState extends State<DailyQuotesPage> {
 
               const SizedBox(height: 30),
 
-              // Tombol Kutipan Baru
               ElevatedButton.icon(
                 onPressed: _generateRandomQuote,
                 icon: const Icon(Icons.refresh),

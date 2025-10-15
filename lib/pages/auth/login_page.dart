@@ -1,11 +1,11 @@
 // ignore_for_file: deprecated_member_use
-
 import 'package:flutter/material.dart';
 import 'package:flutter_buddy/widgets/gradient_background.dart';
 import '../../model/app_state.dart';
 import '../../model/user_preferences.dart';
 import '../../model/user_model.dart';
 import '../main/home_page.dart';
+import '../auth/register_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -32,7 +32,6 @@ class _LoginPageState extends State<LoginPage> {
       final input = _emailOrUserController.text.trim();
       final password = _passwordController.text.trim();
 
-      // ✅ Login otomatis jika input "admin" (tanpa password)
       if (input.toLowerCase() == 'admin') {
         currentUser = UserModel(
           id: 'admin001',
@@ -52,7 +51,6 @@ class _LoginPageState extends State<LoginPage> {
         return;
       }
 
-      // ✅ Login untuk user biasa
       if (registeredUser == null) {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text("Belum ada akun. Silakan Register dulu.")),
@@ -86,7 +84,6 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // --- Background gradient Blue Modern (Mirip Splash Screen) ---
       body: GradientBackground(
         applySafeArea: false,
         child: Center(
@@ -97,12 +94,11 @@ class _LoginPageState extends State<LoginPage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  // --- Logo ---
                   Container(
                     decoration: BoxDecoration(
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.white.withOpacity(0.5), // Efek glow putih halus
+                          color: Colors.white.withOpacity(0.5),
                           blurRadius: 30,
                           spreadRadius: 3,
                           offset: const Offset(0, 5),
@@ -112,7 +108,6 @@ class _LoginPageState extends State<LoginPage> {
                     child: Image.asset("assets/logo.png", height: 120),
                   ),
                   const SizedBox(height: 24),
-                  // --- Title ---
                   const Text(
                     "Fitbuddy healt!",
                     style: TextStyle(
@@ -130,10 +125,10 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   const SizedBox(height: 32),
-                  // --- Email/Username TextField ---
+
                   TextFormField(
                     controller: _emailOrUserController,
-                    style: const TextStyle(color: Color(0xFF4A90E2)), // Warna teks input
+                    style: const TextStyle(color: Color(0xFF4A90E2)),
                     decoration: InputDecoration(
                       filled: true,
                       fillColor: Colors.white.withOpacity(0.95),
@@ -144,13 +139,10 @@ class _LoginPageState extends State<LoginPage> {
                         borderRadius: BorderRadius.circular(16),
                         borderSide: BorderSide.none,
                       ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(16),
-                        borderSide: BorderSide.none,
-                      ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(16),
-                        borderSide: const BorderSide(color: Color(0xFF4A90E2), width: 2), // Fokus border
+                        borderSide:
+                            const BorderSide(color: Color(0xFF4A90E2), width: 2),
                       ),
                     ),
                     validator: (value) {
@@ -173,11 +165,11 @@ class _LoginPageState extends State<LoginPage> {
                     },
                   ),
                   const SizedBox(height: 16),
-                  // --- Password TextField ---
+
                   TextFormField(
                     controller: _passwordController,
                     obscureText: _obscurePassword,
-                    style: const TextStyle(color: Color(0xFF4A90E2)), // Warna teks input
+                    style: const TextStyle(color: Color(0xFF4A90E2)),
                     decoration: InputDecoration(
                       filled: true,
                       fillColor: Colors.white.withOpacity(0.95),
@@ -188,20 +180,20 @@ class _LoginPageState extends State<LoginPage> {
                         borderRadius: BorderRadius.circular(16),
                         borderSide: BorderSide.none,
                       ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(16),
-                        borderSide: BorderSide.none,
-                      ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(16),
-                        borderSide: const BorderSide(color: Color(0xFF4A90E2), width: 2),
+                        borderSide:
+                            const BorderSide(color: Color(0xFF4A90E2), width: 2),
                       ),
                       suffixIcon: IconButton(
                         icon: Icon(
-                          _obscurePassword ? Icons.visibility_off : Icons.visibility,
+                          _obscurePassword
+                              ? Icons.visibility_off
+                              : Icons.visibility,
                           color: const Color(0xFF4A90E2),
                         ),
-                        onPressed: () => setState(() => _obscurePassword = !_obscurePassword),
+                        onPressed: () =>
+                            setState(() => _obscurePassword = !_obscurePassword),
                       ),
                     ),
                     validator: (value) {
@@ -218,7 +210,7 @@ class _LoginPageState extends State<LoginPage> {
                     },
                   ),
                   const SizedBox(height: 24),
-                  // --- Login Button ---
+
                   ElevatedButton(
                     onPressed: _login,
                     style: ElevatedButton.styleFrom(
@@ -233,18 +225,17 @@ class _LoginPageState extends State<LoginPage> {
                     child: Ink(
                       decoration: BoxDecoration(
                         gradient: const LinearGradient(
-                          colors: [
-                            Color(0xFFF9A825),
-                            Color(0xFFFFC107)
-                          ],
+                          colors: [Color(0xFFF9A825), Color(0xFFFFC107)],
                           begin: Alignment.centerLeft,
                           end: Alignment.centerRight,
                         ),
                         borderRadius: BorderRadius.circular(30),
                       ),
                       child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 80, vertical: 16),
-                        constraints: const BoxConstraints(minWidth: 150.0, minHeight: 48.0),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 80, vertical: 16),
+                        constraints:
+                            const BoxConstraints(minWidth: 150.0, minHeight: 48.0),
                         alignment: Alignment.center,
                         child: const Row(
                           mainAxisSize: MainAxisSize.min,
@@ -265,9 +256,15 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   const SizedBox(height: 16),
-                  // --- Register Text ---
+
                   TextButton(
-                    onPressed: () => Navigator.pushNamed(context, '/register'),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const RegisterPage()),
+                      );
+                    },
                     child: const Text(
                       "Don’t have an account? Register",
                       style: TextStyle(

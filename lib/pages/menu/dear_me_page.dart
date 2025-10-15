@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class DearMePage extends StatefulWidget {
-  final String userId; // tambahkan userId agar per akun
+  final String userId; 
 
   const DearMePage({super.key, required this.userId});
 
@@ -52,7 +52,7 @@ class _DearMePageState extends State<DearMePage> {
 
   @override
   void dispose() {
-    _controller.dispose(); // bersihkan controller saat widget dihancurkan
+    _controller.dispose(); 
     super.dispose();
   }
 

@@ -25,7 +25,6 @@ class _AdminPageState extends State<AdminPage> with SingleTickerProviderStateMix
     _loadFeedbacks();
   }
 
-  // ==================== USER LOGIN ====================
   Future<void> _loadLoggedUsers() async {
     final prefs = await SharedPreferences.getInstance();
     setState(() {
@@ -53,7 +52,6 @@ class _AdminPageState extends State<AdminPage> with SingleTickerProviderStateMix
     await prefs.remove('logged_users');
   }
 
-  // ==================== FEEDBACK ====================
   Future<void> _loadFeedbacks() async {
     final prefs = await SharedPreferences.getInstance();
     setState(() {
@@ -96,15 +94,14 @@ class _AdminPageState extends State<AdminPage> with SingleTickerProviderStateMix
           labelColor: colorScheme.onPrimary,
           unselectedLabelColor: Colors.black54,
           tabs: const [
-            Tab(icon: Icon(Icons.people_alt)), // tulisan dihapus
-            Tab(icon: Icon(Icons.feedback_outlined)), // tulisan dihapus
+            Tab(icon: Icon(Icons.people_alt)), 
+            Tab(icon: Icon(Icons.feedback_outlined)), 
           ],
         ),
       ),
       body: TabBarView(
         controller: _tabController,
         children: [
-          // ================= USER LOGIN TAB =================
           Padding(
             padding: const EdgeInsets.all(16),
             child: Column(
@@ -159,8 +156,6 @@ class _AdminPageState extends State<AdminPage> with SingleTickerProviderStateMix
               ],
             ),
           ),
-
-          // ================= FEEDBACK TAB =================
           Padding(
             padding: const EdgeInsets.all(16),
             child: Column(

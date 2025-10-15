@@ -4,7 +4,7 @@ class MenuItem {
   final String title;
   final IconData icon;
   final Color color;
-  final Widget Function() pageBuilder; // fungsi yang menghasilkan widget
+  final Widget Function() pageBuilder; 
 
   MenuItem({
     required this.title,
@@ -13,12 +13,10 @@ class MenuItem {
     required this.pageBuilder,
   });
 
-  // Fungsi bantu untuk membuka halaman
   Widget openPage() {
     return pageBuilder();
   }
 
-  // copyWith untuk membuat salinan dengan beberapa properti diubah
   MenuItem copyWith({
     String? title,
     IconData? icon,

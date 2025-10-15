@@ -25,7 +25,6 @@ class SettingsPage extends StatelessWidget {
       return "Sangat Direkomendasikan";
     }
 
-    // 🧠 Simpan feedback ke SharedPreferences
     Future<void> _saveFeedback(String feedback, double rating) async {
       final prefs = await SharedPreferences.getInstance();
       List<String> feedbacks = prefs.getStringList('user_feedbacks') ?? [];
@@ -165,7 +164,7 @@ class SettingsPage extends StatelessWidget {
                                 ),
                                 onPressed: () async {
                                   await _saveFeedback(feedbackController.text, userRating);
-                                  Navigator.pop(context); // kembali ke home
+                                  Navigator.pop(context); 
                                 },
                                 child: const Text("Kirim & Kembali", style: TextStyle(fontWeight: FontWeight.bold)),
                               ),

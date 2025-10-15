@@ -1,5 +1,4 @@
 // ignore_for_file: deprecated_member_use
-
 import 'dart:io';
 import 'dart:typed_data';
 import 'dart:convert';
@@ -8,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import '/model/user_model.dart';
 import '/model/user_preferences.dart';
-import '/model/app_theme.dart'; // 🌈 pastikan AppTheme ada
+import '/model/app_theme.dart'; 
 
 class ProfilePage extends StatefulWidget {
   final UserModel user;
@@ -194,13 +193,10 @@ class _ProfilePageState extends State<ProfilePage>
                 ),
               );
 
-    // **DIHAPUS** Widget appBarAvatar yang sebelumnya dipakai di actions AppBar
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        // *** Bagian actions yang berisi foto profil dihapus ***
       ),
       extendBodyBehindAppBar: true,
       body: Container(

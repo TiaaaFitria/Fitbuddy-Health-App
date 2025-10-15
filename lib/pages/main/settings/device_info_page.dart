@@ -1,6 +1,5 @@
 // DeviceInfoPage.dart
 // ignore_for_file: deprecated_member_use
-
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:device_info_plus/device_info_plus.dart';
@@ -26,7 +25,6 @@ class _DeviceInfoPageState extends State<DeviceInfoPage> {
     _getDeviceInfo();
   }
 
-  // Robust helper to toString safely
   String _safe(dynamic v) {
     try {
       if (v == null) return '-';
@@ -46,10 +44,8 @@ class _DeviceInfoPageState extends State<DeviceInfoPage> {
     try {
       final Map<String, String> info = {};
 
-      // ===== WEB =====
       if (kIsWeb || UniversalPlatform.isWeb) {
         final web = await _deviceInfo.webBrowserInfo;
-        // browserName could be an enum, guard it
         final browserName = web.browserName.toString().split('.').last;
         info['Platform'] = 'Web';
         info['Browser'] = browserName;
@@ -62,7 +58,6 @@ class _DeviceInfoPageState extends State<DeviceInfoPage> {
         info['Hardware Concurrency'] = _safe(web.hardwareConcurrency);
         info['Device Memory (GB)'] = _safe(web.deviceMemory);
       }
-      // ===== ANDROID =====
       else if (UniversalPlatform.isAndroid) {
         final a = await _deviceInfo.androidInfo;
         info['Platform'] = 'Android';
@@ -81,7 +76,6 @@ class _DeviceInfoPageState extends State<DeviceInfoPage> {
         info['Is Physical Device'] = _safe(a.isPhysicalDevice);
         info['Id'] = _safe(a.id);
       }
-      // ===== IOS =====
       else if (UniversalPlatform.isIOS) {
         final i = await _deviceInfo.iosInfo;
         info['Platform'] = 'iOS';
@@ -92,7 +86,6 @@ class _DeviceInfoPageState extends State<DeviceInfoPage> {
         info['Localized Model'] = _safe(i.localizedModel);
         info['Identifier for Vendor'] = _safe(i.identifierForVendor);
         info['Is Physical Device'] = _safe(i.isPhysicalDevice);
-        // utsname fields
         try {
           info['utsname.sysname'] = _safe(i.utsname.sysname);
           info['utsname.nodename'] = _safe(i.utsname.nodename);
@@ -101,7 +94,6 @@ class _DeviceInfoPageState extends State<DeviceInfoPage> {
           info['utsname.machine'] = _safe(i.utsname.machine);
         } catch (_) {}
       }
-      // ===== WINDOWS =====
       else if (UniversalPlatform.isWindows) {
         final w = await _deviceInfo.windowsInfo;
         info['Platform'] = 'Windows';
@@ -114,7 +106,6 @@ class _DeviceInfoPageState extends State<DeviceInfoPage> {
         info['Release ID'] = _safe(w.releaseId);
         info['Install Date'] = _safe(w.installDate);
       }
-      // ===== MACOS =====
       else if (UniversalPlatform.isMacOS) {
         final m = await _deviceInfo.macOsInfo;
         info['Platform'] = 'macOS';
@@ -126,7 +117,6 @@ class _DeviceInfoPageState extends State<DeviceInfoPage> {
         info['Active CPUs'] = _safe(m.activeCPUs);
         info['Memory Size (bytes)'] = _safe(m.memorySize);
       }
-      // ===== LINUX =====
       else if (UniversalPlatform.isLinux) {
         final l = await _deviceInfo.linuxInfo;
         info['Platform'] = 'Linux';
@@ -145,7 +135,6 @@ class _DeviceInfoPageState extends State<DeviceInfoPage> {
         info['Note'] = 'Platform tidak dikenali atau tidak didukung oleh plugin.';
       }
 
-      // convert map -> list (preserve insertion order)
       final List<Map<String, String>> list = [];
       info.forEach((k, v) => list.add({k: v}));
 
@@ -157,7 +146,6 @@ class _DeviceInfoPageState extends State<DeviceInfoPage> {
         });
       }
     } catch (e, st) {
-      // debug print supaya mudah dilacak saat pengembangan
       debugPrint('Error getting device info: $e\n$st');
       if (mounted) {
         setState(() {

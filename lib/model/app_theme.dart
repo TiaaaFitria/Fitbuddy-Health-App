@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 class AppTheme {
-  // 🎨 Palet warna utama
   static const Color primaryBlue = Color(0xFF2F80ED);
   static const Color lightBlue = Color(0xFF56CCF2);
   static const Color accentYellow = Color(0xFFFFB703);
@@ -9,7 +8,6 @@ class AppTheme {
   static const Color textDark = Color(0xFF1F2937);
   static const Color textLight = Colors.white;
 
-  // 🌈 Gradient utama (konsisten di seluruh halaman)
   static const LinearGradient mainGradient = LinearGradient(
     begin: Alignment.topCenter,
     end: Alignment.bottomCenter,
@@ -19,7 +17,6 @@ class AppTheme {
     ],
   );
 
-  // 🌞 LIGHT THEME
   static final ThemeData lightTheme = ThemeData(
     brightness: Brightness.light,
     fontFamily: 'Poppins',
@@ -56,7 +53,6 @@ class AppTheme {
         ),
       ),
     ),
-    // Perubahan: gunakan CardThemeData supaya kompatibel
     cardTheme: CardThemeData(
       color: Colors.white,
       shape: RoundedRectangleBorder(
@@ -75,7 +71,6 @@ class AppTheme {
     ),
   );
 
-  // 🌙 DARK THEME
   static final ThemeData darkTheme = ThemeData(
     brightness: Brightness.dark,
     fontFamily: 'Poppins',

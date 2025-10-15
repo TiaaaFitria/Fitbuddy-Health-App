@@ -16,7 +16,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
   @override
   void initState() {
     super.initState();
-    _loadPreferences(); // ambil data dari SharedPreferences
+    _loadPreferences(); 
   }
 
   Future<void> _loadPreferences() async {

@@ -13,7 +13,7 @@ class UserModel {
     required String email,
     String? password,
     String? photoPath,
-    String role = 'user', // default role
+    String role = 'user', 
   })  : _id = id,
         _name = name,
         _email = email,
@@ -21,8 +21,6 @@ class UserModel {
         _photoPath = photoPath,
         _role = role;
 
-  // =============================
-  // Getters
   String get id => _id;
   String get name => _name;
   String get email => _email;
@@ -30,8 +28,6 @@ class UserModel {
   String? get photoPath => _photoPath;
   String get role => _role;
 
-  // =============================
-  // Setters
   set id(String value) {
     if (value.isNotEmpty) _id = value;
   }
@@ -60,8 +56,6 @@ class UserModel {
     }
   }
 
-  // =============================
-  // Mapping
   Map<String, dynamic> toMap() {
     return {
       'id': _id,
@@ -84,7 +78,6 @@ class UserModel {
     );
   }
 
-  // ✅ Tambahkan ini biar aman dipanggil di mana pun
   static UserModel empty() {
     return UserModel(
       id: '',

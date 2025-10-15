@@ -102,7 +102,6 @@ class _JournalPageState extends State<JournalPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // --- Input Judul ---
             TextField(
               controller: _titleController,
               decoration: InputDecoration(
@@ -117,7 +116,6 @@ class _JournalPageState extends State<JournalPage> {
               ),
             ),
             const SizedBox(height: 8),
-            // --- Input Isi ---
             TextField(
               controller: _contentController,
               maxLines: 4,
