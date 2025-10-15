@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:flutter_buddy/widgets/gradient_background.dart';
 import '../../model/app_state.dart';

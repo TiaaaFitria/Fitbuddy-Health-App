@@ -18,6 +18,7 @@ class GradientBackground extends StatelessWidget {
     // Gunakan gradient yang konsisten, tapi sedikit gelap di dark mode
     final List<Color> gradientColors = isDark
         ? [
+            // ignore: deprecated_member_use
             AppTheme.primaryBlue.withOpacity(0.7),
             const Color(0xFF0A192F),
           ]

@@ -28,10 +28,10 @@ class AppTheme {
     colorScheme: const ColorScheme.light(
       primary: primaryBlue,
       secondary: accentYellow,
-      background: backgroundLight,
+      surface: backgroundLight,
       onPrimary: Colors.white,
       onSecondary: Colors.white,
-      onBackground: textDark,
+      onSurface: textDark,
     ),
     appBarTheme: const AppBarTheme(
       backgroundColor: primaryBlue,
@@ -84,10 +84,10 @@ class AppTheme {
     colorScheme: const ColorScheme.dark(
       primary: primaryBlue,
       secondary: accentYellow,
-      background: Color(0xFF121212),
+      surface: Color(0xFF121212),
       onPrimary: Colors.white,
       onSecondary: Colors.white,
-      onBackground: Colors.white70,
+      onSurface: Colors.white70,
     ),
     appBarTheme: const AppBarTheme(
       backgroundColor: Color(0xFF1E1E1E),

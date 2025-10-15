@@ -1,4 +1,4 @@
-// ... (import tetap)
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '/widgets/menu_grid.dart';
@@ -179,6 +179,7 @@ class _HomePageState extends State<HomePage> {
           currentIndex: _selectedIndex,
           selectedItemColor: AppTheme.accentYellow,
           unselectedItemColor: isDark ? Colors.white70 : Colors.white70,
+          // ignore: deprecated_member_use
           backgroundColor: AppTheme.primaryBlue.withOpacity(0.9),
           onTap: (index) => setState(() => _selectedIndex = index),
           type: BottomNavigationBarType.fixed,
@@ -241,6 +242,7 @@ class _HomePageState extends State<HomePage> {
               ),
               boxShadow: [
                 BoxShadow(
+                  // ignore: deprecated_member_use
                   color: Colors.black.withOpacity(0.05),
                   blurRadius: 10,
                   offset: const Offset(0, -2),
@@ -271,7 +273,9 @@ class _HomePageState extends State<HomePage> {
 
   Widget _buildTrackerCard(bool isDark) {
     final Color textColor = Colors.white;
+    // ignore: deprecated_member_use
     final Color bg1 = AppTheme.lightBlue.withOpacity(0.8);
+    // ignore: deprecated_member_use
     final Color bg2 = AppTheme.primaryBlue.withOpacity(0.9);
 
     return Container(
@@ -285,13 +289,14 @@ class _HomePageState extends State<HomePage> {
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
               ),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.3),
-            blurRadius: 10,
-            offset: const Offset(0, 5),
-          ),
-        ],
+       boxShadow: [
+  BoxShadow(
+    // ignore: deprecated_member_use
+    color: Colors.black.withOpacity(0.3),
+    blurRadius: 10,
+    offset: const Offset(0, 5),
+  ),
+],
       ),
       child: Padding(
         padding: const EdgeInsets.all(16),

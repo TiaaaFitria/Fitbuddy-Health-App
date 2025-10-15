@@ -38,6 +38,7 @@ class MenuGrid extends StatelessWidget {
           },
           child: Container(
             decoration: BoxDecoration(
+              // ignore: deprecated_member_use
               color: item.color.withOpacity(0.9),
               borderRadius: BorderRadius.circular(16),
             ),

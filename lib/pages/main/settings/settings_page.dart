@@ -9,7 +9,6 @@ import 'notifications_page.dart';
 import 'appearance_page.dart';
 import 'about_page.dart';
 import 'device_info_page.dart';
-import 'dart:developer' as developer;
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});

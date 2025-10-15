@@ -1,4 +1,3 @@
-import 'package:flutter_buddy/model/menu_item.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'user_model.dart';
 

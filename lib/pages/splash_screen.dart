@@ -1,8 +1,10 @@
+
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'dart:math';
 import '/model/user_preferences.dart';
-import '/model/user_model.dart';
+import '/pages/auth/login_page.dart';
+import '/pages/main/home_page.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -31,7 +33,7 @@ class _SplashScreenState extends State<SplashScreen>
   void initState() {
     super.initState();
 
-    // Logo animations
+    // 🎞️ Logo animation
     _logoController = AnimationController(
       vsync: this,
       duration: const Duration(seconds: 2),
@@ -47,31 +49,54 @@ class _SplashScreenState extends State<SplashScreen>
 
     _logoController.forward();
 
-    // Wave loader animation
+    // 🌊 Wave loader animation
     _waveController = AnimationController(
       vsync: this,
       duration: const Duration(seconds: 2),
     )..repeat(reverse: true);
 
-    // Animated gradient loop
+    // 🌈 Gradient loop animation
     _bgTimer = Timer.periodic(const Duration(seconds: 3), (_) {
-      setState(() {
-        _gradientIndex = (_gradientIndex + 1) % _gradients.length;
-      });
-    });
-
-    // Navigate after delay
-    Timer(const Duration(seconds: 4), () async {
-      UserModel? savedUser = await UserPreferences.getUser();
       if (mounted) {
-        if (savedUser != null) {
-          Navigator.pushReplacementNamed(context, '/home',
-              arguments: savedUser);
-        } else {
-          Navigator.pushReplacementNamed(context, '/login');
-        }
+        setState(() {
+          _gradientIndex = (_gradientIndex + 1) % _gradients.length;
+        });
       }
     });
+
+    // 🕓 Navigasi otomatis setelah 4 detik
+    Timer(const Duration(seconds: 4), _navigateNext);
+  }
+
+  /// Navigasi otomatis ke halaman berikut
+  Future<void> _navigateNext() async {
+    try {
+      final savedUser = await UserPreferences.getUser();
+
+      if (!mounted) return;
+
+      if (savedUser != null) {
+        // ✅ Pindah ke Home tanpa ubah URL
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (_) => HomePage(user: savedUser)),
+        );
+      } else {
+        // ✅ Jika belum login, ke LoginPage
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (_) => const LoginPage()),
+        );
+      }
+    } catch (e) {
+      // ✅ Fallback ke LoginPage jika error
+      if (mounted) {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (_) => const LoginPage()),
+        );
+      }
+    }
   }
 
   @override
@@ -82,7 +107,7 @@ class _SplashScreenState extends State<SplashScreen>
     super.dispose();
   }
 
-  // --- Wave Loader (cool animation) ---
+  // 🌊 Wave Loader
   Widget _buildWaveLoader() {
     return AnimatedBuilder(
       animation: _waveController,
@@ -100,8 +125,9 @@ class _SplashScreenState extends State<SplashScreen>
                 borderRadius: BorderRadius.circular(20),
                 gradient: LinearGradient(
                   colors: [
+                    // ignore: deprecated_member_use
                     Colors.white.withOpacity(0.9),
-                    Colors.blueAccent.shade100
+                    Colors.blueAccent.shade100,
                   ],
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
@@ -142,6 +168,7 @@ class _SplashScreenState extends State<SplashScreen>
                           decoration: BoxDecoration(
                             boxShadow: [
                               BoxShadow(
+                                // ignore: deprecated_member_use
                                 color: Colors.white.withOpacity(0.4),
                                 blurRadius: 25,
                                 spreadRadius: 5,
@@ -181,7 +208,7 @@ class _SplashScreenState extends State<SplashScreen>
                 ),
               ),
 
-              // --- Footer (Created by Tia) ---
+              // --- Footer ---
               Positioned(
                 bottom: 20,
                 left: 0,

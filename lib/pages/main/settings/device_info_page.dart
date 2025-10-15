@@ -1,4 +1,6 @@
 // DeviceInfoPage.dart
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:device_info_plus/device_info_plus.dart';
