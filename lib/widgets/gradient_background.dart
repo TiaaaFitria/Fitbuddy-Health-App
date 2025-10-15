@@ -1,23 +1,43 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_buddy/model/app_theme.dart';
 
 class GradientBackground extends StatelessWidget {
   final Widget child;
-  const GradientBackground({super.key, required this.child});
+  final bool applySafeArea;
+
+  const GradientBackground({
+    super.key,
+    required this.child,
+    this.applySafeArea = true,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
+    // Gunakan gradient yang konsisten, tapi sedikit gelap di dark mode
+    final List<Color> gradientColors = isDark
+        ? [
+            // ignore: deprecated_member_use
+            AppTheme.primaryBlue.withOpacity(0.7),
+            const Color(0xFF0A192F),
+          ]
+        : [
+            AppTheme.lightBlue,
+            AppTheme.primaryBlue,
+          ];
+
+    final gradientContainer = Container(
+      decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: [
-            Color(0xFFB2FEFA), 
-            Color.fromARGB(255, 32, 120, 209), 
-          ],
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: gradientColors,
         ),
       ),
       child: child,
     );
+
+    return applySafeArea ? SafeArea(child: gradientContainer) : gradientContainer;
   }
 }

@@ -1,20 +1,33 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_buddy/pages/main/home_page.dart';
 import 'package:provider/provider.dart';
-import 'pages/splash_screen.dart';
-import 'pages/auth/login_page.dart';
-import 'pages/auth/register_page.dart';
-// ignore: unused_import
-import 'pages/home_page.dart'; 
-import 'model/app_data.dart';
-import 'model/theme_provider.dart';
-import 'model/user_model.dart'; 
+import 'package:intl/date_symbol_data_local.dart';
+import 'package:flutter_web_plugins/url_strategy.dart';
 
-void main() {
+// 🧩 Import semua model dan halaman
+import 'package:flutter_buddy/model/app_data.dart';
+import 'package:flutter_buddy/model/theme_provider.dart';
+import 'package:flutter_buddy/model/app_theme.dart';
+//import 'package:flutter_buddy/model/user_model.dart';
+
+import 'package:flutter_buddy/pages/splash_screen.dart';
+//import 'package:flutter_buddy/pages/auth/login_page.dart';
+//import 'package:flutter_buddy/pages/auth/register_page.dart';
+//import 'package:flutter_buddy/pages/main/home_page.dart';
+//import 'package:flutter_buddy/pages/admin/admin_page.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // 🗓️ Inisialisasi format tanggal lokal Indonesia
+  await initializeDateFormatting('id_ID', null);
+
+  // 🌐 Hilangkan # di URL
+  setUrlStrategy(PathUrlStrategy());
+
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => AppData()),
+        Provider(create: (_) => AppData()),
         ChangeNotifierProvider(create: (_) => ThemeProvider()),
       ],
       child: const MyApp(),
@@ -33,46 +46,16 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: "FitBuddy Health",
 
+      // 🎨 Tema aplikasi
       themeMode: themeProvider.themeMode,
-      theme: ThemeData(
-        brightness: Brightness.light,
-        primarySwatch: Colors.blue,
-        scaffoldBackgroundColor: Colors.white,
-        appBarTheme: const AppBarTheme(
-          backgroundColor: Colors.white,
-          foregroundColor: Colors.black,
-        ),
-      ),
-      darkTheme: ThemeData(
-        brightness: Brightness.dark,
-        primarySwatch: Colors.blue,
-        scaffoldBackgroundColor: Colors.black,
-        appBarTheme: const AppBarTheme(
-          backgroundColor: Colors.black,
-          foregroundColor: Colors.white,
-        ),
-      ),
+      theme: AppTheme.lightTheme,
+      darkTheme: AppTheme.darkTheme,
 
-      // 🔹 route awal
-      initialRoute: '/splash',
+      // 🏁 Splash screen jadi root (URL bersih tanpa /splash)
+      home: const SplashScreen(),
 
-      // 🔹 daftar route statis
-      routes: {
-        '/splash': (context) => const SplashScreen(),
-        '/login': (context) => const LoginPage(),
-        '/register': (context) => const RegisterPage(),
-      },
-
-      // 🔹 handle route dinamis (misalnya butuh arguments)
-      onGenerateRoute: (settings) {
-        if (settings.name == '/home') {
-          final args = settings.arguments as UserModel;
-          return MaterialPageRoute(
-            builder: (context) => HomePage(user: args),
-          );
-        }
-        return null; // biar kalau route ga ketemu → error jelas
-      },
+      // ⛔ Pastikan tidak ada route default yang menambah "/splash"
+      routes: {},
     );
   }
 }

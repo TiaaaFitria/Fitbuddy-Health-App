@@ -16,19 +16,25 @@ class AppData {
         title: "Mood Tracker",
         icon: Icons.mood,
         color: Colors.blueAccent,
-        pageBuilder: () => const MoodTrackerPage(userId: '',),
+        pageBuilder: () => const MoodTrackerPage(
+          userId: '',
+        ),
       ),
       MenuItem(
         title: "My Journal",
         icon: Icons.book_rounded,
         color: Colors.greenAccent,
-        pageBuilder: () => const JournalPage(userId: '',),
+        pageBuilder: () => const JournalPage(
+          userId: '',
+        ),
       ),
       MenuItem(
         title: "Reminder",
         icon: Icons.alarm,
         color: Colors.teal,
-        pageBuilder: () => const ReminderPage(userId: '',),
+        pageBuilder: () => const ReminderPage(
+          userId: '',
+        ),
       ),
       MenuItem(
         title: "Daily Quotes",
@@ -40,7 +46,9 @@ class AppData {
         title: "Dear Me",
         icon: Icons.favorite_rounded,
         color: Colors.pinkAccent,
-        pageBuilder: () => const DearMePage(userId: '',),
+        pageBuilder: () => const DearMePage(
+          userId: '',
+        ),
       ),
       MenuItem(
         title: "My Journey",

@@ -83,4 +83,14 @@ class UserModel {
       role: map['role'] ?? 'user',
     );
   }
+
+  // ✅ Tambahkan ini biar aman dipanggil di mana pun
+  static UserModel empty() {
+    return UserModel(
+      id: '',
+      name: '',
+      email: '',
+      role: 'user',
+    );
+  }
 }
