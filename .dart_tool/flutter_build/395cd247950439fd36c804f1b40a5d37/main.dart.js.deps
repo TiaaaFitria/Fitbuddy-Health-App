@@ -318,6 +318,18 @@ file:///C:/Users/HP/AppData/Local/Pub/Cache/hosted/pub.dev/typed_data-1.4.0/lib/
 file:///C:/Users/HP/AppData/Local/Pub/Cache/hosted/pub.dev/typed_data-1.4.0/lib/typed_data.dart
 file:///C:/Users/HP/AppData/Local/Pub/Cache/hosted/pub.dev/universal_platform-1.1.0/lib/src/universal_platform_locator.dart
 file:///C:/Users/HP/AppData/Local/Pub/Cache/hosted/pub.dev/universal_platform-1.1.0/lib/universal_platform.dart
+file:///C:/Users/HP/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher-6.3.2/lib/src/legacy_api.dart
+file:///C:/Users/HP/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher-6.3.2/lib/src/type_conversion.dart
+file:///C:/Users/HP/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher-6.3.2/lib/src/types.dart
+file:///C:/Users/HP/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher-6.3.2/lib/src/url_launcher_string.dart
+file:///C:/Users/HP/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher-6.3.2/lib/src/url_launcher_uri.dart
+file:///C:/Users/HP/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher-6.3.2/lib/url_launcher.dart
+file:///C:/Users/HP/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher-6.3.2/lib/url_launcher_string.dart
+file:///C:/Users/HP/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher_platform_interface-2.3.2/lib/link.dart
+file:///C:/Users/HP/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher_platform_interface-2.3.2/lib/method_channel_url_launcher.dart
+file:///C:/Users/HP/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher_platform_interface-2.3.2/lib/src/types.dart
+file:///C:/Users/HP/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher_platform_interface-2.3.2/lib/src/url_launcher_platform.dart
+file:///C:/Users/HP/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher_platform_interface-2.3.2/lib/url_launcher_platform_interface.dart
 file:///C:/Users/HP/AppData/Local/Pub/Cache/hosted/pub.dev/vector_math-2.2.0/lib/src/vector_math_64/aabb2.dart
 file:///C:/Users/HP/AppData/Local/Pub/Cache/hosted/pub.dev/vector_math-2.2.0/lib/src/vector_math_64/aabb3.dart
 file:///C:/Users/HP/AppData/Local/Pub/Cache/hosted/pub.dev/vector_math-2.2.0/lib/src/vector_math_64/colors.dart
@@ -545,6 +557,7 @@ file:///C:/Users/HP/Documents/flutter_buddy/lib/model/user_model.dart
 file:///C:/Users/HP/Documents/flutter_buddy/lib/model/user_preferences.dart
 file:///C:/Users/HP/Documents/flutter_buddy/lib/pages/admin/admin_page.dart
 file:///C:/Users/HP/Documents/flutter_buddy/lib/pages/auth/login_page.dart
+file:///C:/Users/HP/Documents/flutter_buddy/lib/pages/auth/register_page.dart
 file:///C:/Users/HP/Documents/flutter_buddy/lib/pages/main/home_page.dart
 file:///C:/Users/HP/Documents/flutter_buddy/lib/pages/main/profile_page.dart
 file:///C:/Users/HP/Documents/flutter_buddy/lib/pages/main/settings/about_page.dart
